@@ -3,7 +3,7 @@ session_start();
 
 require_once "db.php";
 
-if(isset($_SESSION['user_id'])!="") {
+if(isset($_SESSION['user_id']) !="") {
     header("Location: dashboard.php");
 }
 
@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
         $password_error = "Password must be minimum of 6 characters";
     }  
 
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $email. "' and pass = '" . md5($password). "'");
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password). "'");
    if(!empty($result)){
         if ($row = mysqli_fetch_array($result)) {
             $_SESSION['user_id'] = $row['uid'];

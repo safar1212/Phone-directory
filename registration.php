@@ -8,7 +8,7 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $mobile = mysqli_real_escape_string($conn, $_POST['mobile']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']); 
+        $cpassword = mysqli_real_escape_string($conn, $_POST['password']); 
         if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
             $name_error = "Name must contain only alphabets and space";
         }
@@ -25,11 +25,11 @@
             $cpassword_error = "Password and Confirm Password doesn't match";
         }
      
-            if(mysqli_query($conn, "INSERT INTO users(name, email, mobile_number ,password) VALUES('" . $name . "', '" . $email . "', '" . $mobile . "', '" . md5($password) . "')")) {
+            if(mysqli_query($conn, "INSERT INTO users(name, email, mobile ,cpassword) VALUES('" . $name . "', '" . $email . "', '" . $mobile . "', '" . md5($password) . "')")) {
              header("location: login.php");
              exit();
             } else {
-               echo "Error: " : "" . mysqli_error($conn);
+               echo "Error: "   . mysqli_error($conn);
             }
  
         mysqli_close($conn);
