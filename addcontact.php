@@ -1,16 +1,3 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
-{
-    header("location: login.php");
-}
-
-
-?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,17 +19,14 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="addcontact.php">Add Contact</a>
+        <a class="nav-link" href="welcome.php">Contact List</a>
       </li>
     </ul>
 
   <div class="navbar-collapse collapse">
   <ul class="navbar-nav ml-auto">
   <li class="nav-item active">
-        <a class="nav-link" href="#"> <img src="https://img.icons8.com/metro/26/000000/guest-male.png"> <?php echo "Welcome ". $_SESSION['username']?></a>
+        <a class="nav-link" href="#"> <img src="https://img.icons8.com/metro/26/000000/guest-male.png"></a>
       </li>
   </ul>
   </div>
@@ -51,11 +35,5 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
   </div>
 </nav>
 
-<div class="container mt-4">
-<h3><?php echo "Welcome ". $_SESSION['username']?>! You can now use this website</h3>
-<hr>
-</div>
-
-   
   </body>
 </html>
