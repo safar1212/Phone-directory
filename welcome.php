@@ -52,9 +52,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 </nav>
 
 <div class="container mt-4">
-<h3><?php echo "Welcome ". $_SESSION['username']?>! You can now use this website</h3>
+<h3><?php echo "Welcome ". $_SESSION['username']?>! Below you can find the contact list</h3>
 <hr>
 </div>
+
+
+
 
    
   </body>
