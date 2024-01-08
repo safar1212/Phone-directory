@@ -8,6 +8,29 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 }
 
 
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'login');
+
+
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+if(!$conn){
+    dir("Cannot connect to server");
+}
+
+
+$sql = "SELECT * FROM `numbers` ORDER BY `id` DESC";
+$result = mysqli_query($conn, $sql);
+
+$num = mysqli_num_rows($result);
+
+
+
+echo $num;
+
+
 ?>
 
 
@@ -55,6 +78,22 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 <h3><?php echo "Welcome ". $_SESSION['username']?>! Below you can find the contact list</h3>
 <hr>
 </div>
+
+
+<h3 style="margin-left: 30px;"><?php echo $num ?> records found in database</h3>
+<hr>
+
+<div>
+
+<?php
+
+
+
+?>
+
+</div>
+
+
 
 
 
