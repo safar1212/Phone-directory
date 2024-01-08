@@ -1,74 +1,120 @@
 <?php
+//This script will handle login
 session_start();
 
-require_once "db.php";
+// check if the user is already logged in
+if(isset($_SESSION['username']))
+{
+    header("location: welcome.php");
+    exit;
+}
+require_once "config.php";
 
-if(isset($_SESSION['user_id']) !="") {
-    header("Location: dashboard.php");
+$username = $password = "";
+$err = "";
+
+// if request method is post
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    if(empty(trim($_POST['username'])) || empty(trim($_POST['password'])))
+    {
+        $err = "Please enter username + password";
+    }
+    else{
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+    }
+
+
+if(empty($err))
+{
+    $sql = "SELECT id, username, password FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $param_username);
+    $param_username = $username;
+    
+    
+    // Try to execute this statement
+    if(mysqli_stmt_execute($stmt)){
+        mysqli_stmt_store_result($stmt);
+        if(mysqli_stmt_num_rows($stmt) == 1)
+                {
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt))
+                    {
+                        if(password_verify($password, $hashed_password))
+                        {
+                            // this means the password is corrct. Allow user to login
+                            session_start();
+                            $_SESSION["username"] = $username;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["loggedin"] = true;
+
+                            //Redirect user to welcome page
+                            header("location: welcome.php");
+                            
+                        }
+                    }
+
+                }
+
+    }
+}    
+
+
 }
 
-if (isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-        $email_error = "Please Enter Valid Email ID";
-    }
-    if(strlen($password) < 6) {
-        $password_error = "Password must be minimum of 6 characters";
-    }  
-
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password). "'");
-   if(!empty($result)){
-        if ($row = mysqli_fetch_array($result)) {
-            $_SESSION['user_id'] = $row['uid'];
-            $_SESSION['user_name'] = $row['name'];
-            $_SESSION['user_email'] = $row['email'];
-            $_SESSION['user_mobile'] = $row['mobile'];
-            header("Location: dashboard.php");
-        } 
-    }else {
-        $error_message = "Incorrect Email or Password!!!";
-    }
-}
 ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Simple Login Form in PHP with Validation | Tutsmake.com</title>
-     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="page-header">
-                    <h2>Login Form in PHP with Validation</h2>
-                </div>
-                <p>Please fill all fields in the form</p>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-                    <div class="form-group ">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" value="" maxlength="30" required="">
-                        <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
-                    </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" value="" maxlength="8" required="">
-                        <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
-                    </div>  
-                    
-                    <input type="submit" class="btn btn-primary" name="login" value="submit">
-                    <br>
-                    You don't have account?<a href="registration.php" class="mt-3">Click Here</a>
-                    
-                    
-                </form>
-            </div>
-        </div>     
-    </div>
-</body>
+    <title>PHP login system!</title>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Log In Page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <ul class="navbar-nav">
+     
+      <li class="nav-item">
+        <a class="nav-link" href="register.php">Register</a>
+      </li>
+     
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+<h3>Please Login Here:</h3>
+<hr>
+
+<form action="" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+</div>
+
+   
 </html>
