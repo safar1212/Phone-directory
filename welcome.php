@@ -55,10 +55,13 @@ $num = mysqli_num_rows($result);
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
+          <a class="nav-link" href="addcontact.php">Add Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="addcontact.php">Add Contact</a>
+          <a class="nav-link" href="searchbox.php">Search Box</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">logout</a>
         </li>
       </ul>
 
@@ -83,14 +86,7 @@ $num = mysqli_num_rows($result);
   <h3 style="margin-left: 30px;"><?php echo $num ?> records found in Database</h3>
   <hr>
 
-  <form action="post">
-    <div id="input">
-      <input type="text" placeholder="Search table by Name">
-      <div>
-        <button type="button">Search</button>
-      </div>
-    </div>
-  </form>
+  
 
 
 

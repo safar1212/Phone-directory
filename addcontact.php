@@ -119,6 +119,9 @@ mysqli_close($conn);
       <li class="nav-item">
         <a class="nav-link" href="welcome.php">Contact List</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="searchbox.php">Search Box</a>
+        </li>
     </ul>
 
   <div class="navbar-collapse collapse">
