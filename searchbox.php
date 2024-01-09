@@ -15,10 +15,9 @@ define('DB_NAME', 'login');
 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-if (!$conn) {
-  dir("Cannot connect to server");
+if(!$conn){
+    dir("Cannot connect to server");
 }
-
 
 
 ?>
@@ -62,11 +61,11 @@ if (!$conn) {
   </nav>
 
 
-  <form action="GET" style="margin-top: 60px; margin-bottom: 60px;">
+  <form action="post" style="margin-top: 60px; margin-bottom: 60px;">
     <div id="input">
-      <input type="text" name="search" placeholder="Search table by Name" required value="<?php if (isset($_GET['search'])) { $_GET['search'];} ?>">
+      <input type="text" name="search" placeholder="Search table by Name" required>
       <div>
-        <button type="submit">Search</button>
+        <button type="submit" name="submit">Search</button>
       </div>
     </div>
   </form>
@@ -108,6 +107,34 @@ if (!$conn) {
       ?>
     </tbody>
   </table> -->
+
+
+  <?php
+
+if (isset($_POST["submit"])) {
+	$str = $_POST["search"];
+	$sth = $con->prepare("SELECT * FROM `search` WHERE Name = '$str'");
+
+	$sth->setFetchMode(PDO:: FETCH_OBJ);
+	$sth -> execute();
+
+	if($row = $sth->fetch())
+	{
+		?>
+		<br><br><br>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td><?php echo $row->Name; ?></td>
+				<td><?php echo $row->Description;?></td>
+			</tr>
+
+		</table>
+  
+  ?>
 
 </body>
 
