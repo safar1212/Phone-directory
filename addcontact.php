@@ -77,6 +77,8 @@ if(empty($nameofperson_err) && empty($mobienumber_err))
         {
             // header("location: welcome.php");
             echo "Contact details added successfully";
+            
+
         } else{
             echo "Something went wrong... could not add the contact details!";
         }
@@ -117,6 +119,9 @@ mysqli_close($conn);
       <li class="nav-item">
         <a class="nav-link" href="welcome.php">Contact List</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="searchbox.php">Search Box</a>
+        </li>
     </ul>
 
   <div class="navbar-collapse collapse">
