@@ -1,3 +1,30 @@
+<?php 
+
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header("location: login.php");
+}
+
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'login');
+
+
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+if (!$conn) {
+  dir("Cannot connect to server");
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,12 +83,11 @@
     </thead>
     <tbody>
       <?php
-      $con = mysqli_connect("localhost", "root", "", "login");
-
+      
       if (isset($_GET['search'])) {
         $filtervalues = $_GET['search'];
         $query = "SELECT * FROM numbers WHERE CONCAT(nameofperson,mobilenumber) LIKE '%$filtervalues%' ";
-        $query_run = mysqli_query($con, $query);
+        $query_run = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($query_run) > 0) {
           foreach ($query_run as $items) {
