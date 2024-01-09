@@ -20,10 +20,11 @@ if (!$conn) {
 }
 
 
-$sql = "SELECT * FROM `numbers` ORDER BY `id` DESC";
- $result = mysqli_query($conn, $sql);
- 
- $num = mysqli_num_rows($result);
+$sql = "SELECT * FROM `numbers` ORDER BY `id`";
+$result = mysqli_query($conn, $sql);
+
+$num = mysqli_num_rows($result);
+
 
 
 ?>
@@ -41,6 +42,8 @@ $sql = "SELECT * FROM `numbers` ORDER BY `id` DESC";
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <title>PHP login system!</title>
+  <link rel="stylesheet" href="welcome.css">
+
 </head>
 
 <body>
@@ -77,26 +80,52 @@ $sql = "SELECT * FROM `numbers` ORDER BY `id` DESC";
   </div>
 
 
-  <h3 style="margin-left: 30px;"><?php echo $num ?> records found in database</h3>
+  <h3 style="margin-left: 30px;"><?php echo $num ?> records found in Database</h3>
   <hr>
 
- <?php
- $sql = "SELECT * FROM `numbers` ORDER BY `id` DESC";
- $result = mysqli_query($conn, $sql);
- 
- $num = mysqli_num_rows($result);
- 
- if ($num > 0) {
-  
-   while ($row = mysqli_fetch_assoc($result)) {
-     echo  " &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;No: " . $row['id'] . " &nbsp;&nbsp;&nbsp;Name: " . $row['nameofperson'] . " &nbsp;&nbsp;&nbsp; Mobile Number: " . $row['mobilenumber'] . " &nbsp;&nbsp;&nbsp;<button>Delete</button>";
-     echo "<br>";
-     echo "<hr>";
+  <form action="post">
+    <div id="input">
+      <input type="text" placeholder="Search table by Name">
+      <div>
+        <button type="button">Search</button>
+      </div>
+    </div>
+  </form>
 
-     
-   }
- }
- ?>
+
+
+
+
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Name of Person</th>
+      <th>Mobile Number</th>
+      <th>Operation</th>
+    </tr>
+    <!-- PHP CODE TO FETCH DATA FROM ROWS -->
+    <?php
+
+    // LOOP TILL END OF DATA
+    if ($num > 0) {
+
+      while ($row = mysqli_fetch_assoc($result)) {
+
+    ?>
+        <tr>
+          <!-- FETCHING DATA FROM EACH
+                    ROW OF EVERY COLUMN -->
+          <td><?php echo $row['id']; ?></td>
+          <td><?php echo $row['nameofperson']; ?></td>
+          <td><?php echo $row['mobilenumber']; ?></td>
+          <td><a href='delete.php?id="<?php echo $row['id'] ?>"'>Delete</a></td>
+
+        </tr>
+    <?php
+      }
+    }
+    ?>
+  </table>
 
 
 
