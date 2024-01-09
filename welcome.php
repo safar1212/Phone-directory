@@ -106,7 +106,6 @@ $num = mysqli_num_rows($result);
     <!-- PHP CODE TO FETCH DATA FROM ROWS -->
     <?php
 
-    // LOOP TILL END OF DATA
     if ($num > 0) {
 
       while ($row = mysqli_fetch_assoc($result)) {
