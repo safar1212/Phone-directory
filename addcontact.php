@@ -77,6 +77,8 @@ if(empty($nameofperson_err) && empty($mobienumber_err))
         {
             // header("location: welcome.php");
             echo "Contact details added successfully";
+            
+
         } else{
             echo "Something went wrong... could not add the contact details!";
         }
