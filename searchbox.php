@@ -64,16 +64,14 @@ if (!$conn) {
 
   <form action="GET" style="margin-top: 60px; margin-bottom: 60px;">
     <div id="input">
-      <input type="text" placeholder="Search table by Name" required value="<?php if (isset($_GET['search'])) {
-                                                                              echo $_GET['search'];
-                                                                            } ?>">
+      <input type="text" name="search" placeholder="Search table by Name" required value="<?php if (isset($_GET['search'])) { $_GET['search'];} ?>">
       <div>
-        <button type="button">Search</button>
+        <button type="submit">Search</button>
       </div>
     </div>
   </form>
 
-  <table>
+  <!-- <table>
     <thead>
       <tr>
         <th>ID</th>
@@ -109,7 +107,7 @@ if (!$conn) {
       }
       ?>
     </tbody>
-  </table>
+  </table> -->
 
 </body>
 
