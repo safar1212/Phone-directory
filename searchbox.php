@@ -66,6 +66,7 @@ if(!$conn){
       <input type="text" name="search" placeholder="Search table by Name" required>
       <div>
         <button type="submit" name="submit">Search</button>
+      
       </div>
     </div>
   </form>
@@ -108,31 +109,6 @@ if(!$conn){
     </tbody>
   </table> -->
 
-
-  <?php
-
-if (isset($_POST["submit"])) {
-	$str = $_POST["search"];
-	$sth = $con->prepare("SELECT * FROM `search` WHERE Name = '$str'");
-
-	$sth->setFetchMode(PDO:: FETCH_OBJ);
-	$sth -> execute();
-
-	if($row = $sth->fetch())
-	{
-		?>
-		<br><br><br>
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td><?php echo $row->Name; ?></td>
-				<td><?php echo $row->Description;?></td>
-			</tr>
-
-		</table>
   
   ?>
 
