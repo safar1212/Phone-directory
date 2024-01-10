@@ -6,18 +6,33 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
   header("location: login.php");
 }
 
+require_once "config.php";
 
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'login');
+// Search database
 
-
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if(!$conn){
-    dir("Cannot connect to server");
+if(isset($_POST['search']))
+{
+    $valueToSearch = $_POST['valuetosearch'];
+    // search in all table columns
+    // using concat mysql function
+    $query = "SELECT * FROM `numbers` WHERE CONCAT(`id`, `nameofperson`, `mobilenumber`) LIKE '%".$valueToSearch."%'";
+    $search_result = filterTable($query);
+    
 }
+ else {
+    $query = "SELECT * FROM `numbers`";
+    $search_result = filterTable($query);
+}
+
+// function to connect and execute the query
+function filterTable($query)
+{
+    $connect = mysqli_connect("localhost", "root", "", "login");
+    $filter_Result = mysqli_query($connect, $query);
+    return $filter_Result;
+}
+
+
 
 
 ?>
@@ -39,6 +54,7 @@ if(!$conn){
 
 <body>
 
+<!-- navigation -->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Search Box</a>
@@ -60,57 +76,47 @@ if(!$conn){
     </div>
   </nav>
 
+  <!-- Searchbar -->
 
-  <form action="post" style="margin-top: 60px; margin-bottom: 60px;">
+
+  <form action="searchbox.php" method="post" style="margin-top: 60px; margin-bottom: 60px;">
     <div id="input">
-      <input type="text" name="search" placeholder="Search table by Name" required>
+      <input type="text" name="valuetosearch" placeholder="Search table by Name" required>
       <div>
-        <button type="submit" name="submit">Search</button>
-      
+        <button type="submit" name="search">Search</button>
       </div>
     </div>
+
+
+    <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name of Person</th>
+                    <th>Contact Number</th>
+                </tr>
+
+      <!-- populate table from mysql database -->
+                <?php while($row = mysqli_fetch_array($search_result)):?>
+                <tr>
+                    <td><?php echo $row['id'];?></td>
+                    <td><?php echo $row['nameofperson'];?></td>
+                    <td><?php echo $row['mobilenumber'];?></td>
+                </tr>
+                <?php endwhile;?>
+            </table>
+
+
+
+
+
   </form>
 
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name of Person</th>
-        <th>Contact Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      
-      if (isset($_GET['search'])) {
-        $filtervalues = $_GET['search'];
-        $query = "SELECT * FROM numbers WHERE CONCAT(nameofperson,mobilenumber) LIKE '%$filtervalues%' ";
-        $query_run = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($query_run) > 0) {
-          foreach ($query_run as $items) {
-      ?>
-            <tr>
-              <td><?= $items['id']; ?></td>
-              <td><?= $items['nameofperson']; ?></td>
-              <td><?= $items['mobilenumber']; ?></td>
-            </tr>
-          <?php
-          }
-        } else {
-          ?>
-          <tr>
-            <td colspan="4">No Record Found</td>
-          </tr>
-      <?php
-        }
-      }
-      ?>
-    </tbody>
-  </table> -->
+<!-- Table shown -->
 
   
-  ?>
+
+  
+  
 
 </body>
 
