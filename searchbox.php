@@ -57,7 +57,7 @@ function filterTable($query)
 <!-- navigation -->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Search Box</a>
+    <a class="navbar-brand" href="#">Search Box Page</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,14 +81,14 @@ function filterTable($query)
 
   <form action="searchbox.php" method="post" style="margin-top: 60px; margin-bottom: 60px;">
     <div id="input">
-      <input type="text" name="valuetosearch" placeholder="Search table by Name" required>
+      <input type="text" name="valuetosearch" placeholder="Search table by Name or Number" required>
       <div>
         <button type="submit" name="search">Search</button>
       </div>
     </div>
 
 
-    <table>
+    <table  style="margin-top: 60px;">
                 <tr>
                     <th>Id</th>
                     <th>Name of Person</th>
