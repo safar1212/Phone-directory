@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <option  value="Moderator">Moderator</option>
                         <option  value="Viewer">Viewer</option>
                     </select>
-                    <!-- <input type="text" class="form-control" name="designation" id="inputEmail4" placeholder="designation"> -->
+                    
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Password</label>

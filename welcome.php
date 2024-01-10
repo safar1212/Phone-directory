@@ -57,7 +57,7 @@ $num = mysqli_num_rows($result);
       <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"> <img src="https://img.icons8.com/metro/26/000000/guest-male.png"> <?php echo "Welcome " . $_SESSION['username'] ?></a>
+            <a class="nav-link" href="#"> <img src="https://img.icons8.com/metro/26/000000/guest-male.png"> <?php echo "Welcome " . $_SESSION['username']  ?><?php echo "Designation " . $_SESSION['designation']  ?></a>
           </li>
         </ul>
       </div>

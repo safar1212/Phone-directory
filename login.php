@@ -9,21 +9,22 @@ if (isset($_SESSION['username'])) {
 }
 require_once "config.php";
 
-$username = $password = "";
+$username = $designation = $password = "";
 $err = "";
 
 // if request method is post
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  if (empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
-    $err = "Please enter username + password";
+  if (empty(trim($_POST['username'])) || empty(trim($_POST['designation'])) || empty(trim($_POST['password']))) {
+    $err = "Please enter username + password + designation";
   } else {
     $username = trim($_POST['username']);
+    $designation = trim($_POST['designation']);
     $password = trim($_POST['password']);
   }
 
 
   if (empty($err)) {
-    $sql = "SELECT id, username, password FROM users WHERE username = ?";
+    $sql = "SELECT id, username, designation, password FROM users WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $param_username);
     $param_username = $username;
@@ -33,12 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (mysqli_stmt_execute($stmt)) {
       mysqli_stmt_store_result($stmt);
       if (mysqli_stmt_num_rows($stmt) == 1) {
-        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+        mysqli_stmt_bind_result($stmt, $id, $username,$designation , $hashed_password);
         if (mysqli_stmt_fetch($stmt)) {
           if (password_verify($password, $hashed_password)) {
             // this means the password is corrct. Allow user to login
             session_start();
             $_SESSION["username"] = $username;
+            $_SESSION["designation"];
             $_SESSION["id"] = $id;
             $_SESSION["loggedin"] = true;
 
@@ -94,6 +96,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <label for="exampleInputEmail1">Username</label>
         <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
       </div>
+      <div class="from-group mb-3">
+                    <label for="">Designation</label> 
+                    <select name="designation" require class="form-control">
+                        <option value="">--Select Designation--</option>
+                        <option  value="Super Admin">Super Admin</option>
+                        <option  value="Admin">Admin</option>
+                        <option  value="Moderator">Moderator</option>
+                        <option  value="Viewer">Viewer</option>
+                    </select>
+                    
+                </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
