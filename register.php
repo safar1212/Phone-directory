@@ -35,30 +35,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     mysqli_stmt_close($stmt);
 
     // Check if designation is empty
-    if (empty(trim($_POST["designation"]))) {
-        $username_err = "Select your designation";
+    // if (empty(trim($_POST["designation"]))) {
+    //     $designation_err = "Select your designation";
+    // } else {
+    //     $sql = "SELECT id FROM users WHERE designation = ?";
+    //     $stmt = mysqli_prepare($conn, $sql);
+    //     if ($stmt) {
+    //         mysqli_stmt_bind_param($stmt, "s", $param_designation);
+
+    //         // Set the value of param username
+    //         $param_designation = trim($_POST['designation']);
+
+    //         // Try to execute this statement
+    //         if (mysqli_stmt_execute($stmt)) {
+    //             mysqli_stmt_store_result($stmt);
+    //             if (mysqli_stmt_num_rows($stmt) == 1) {
+    //                 $designation = trim($_POST['designation']);
+    //             } 
+    //         } else {
+    //             echo "Something went wrong";
+    //         }
+    //     }
+    // }
+
+    // mysqli_stmt_close($stmt);
+    if (empty(trim($_POST['designation']))) {
+        $designation_err = "designation cannot be blank";
     } else {
-        $sql = "SELECT id FROM users WHERE designation = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $param_designation);
-
-            // Set the value of param username
-            $param_username = trim($_POST['designation']);
-
-            // Try to execute this statement
-            if (mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username = trim($_POST['designation']);
-                } 
-            } else {
-                echo "Something went wrong";
-            }
-        }
+        $designation = trim($_POST['designation']);
     }
-
-    mysqli_stmt_close($stmt);
+    
 
 
     // Check for password
@@ -81,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $sql = "INSERT INTO users (username, designation, password) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $param_designation, $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_designation, $param_password);
 
             // Set these parameters
             $param_username = $username;
@@ -150,11 +156,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <label for="">Designation</label>
                     <select name="designation" class="form-control">
                         <option value="">--Select Designation--</option>
-                        <option value="Super Admin">Super Admin</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Moderator">Moderator</option>
-                        <option value="Viewer">Viewer</option>
+                        <option  value="Super Admin">Super Admin</option>
+                        <option  value="Admin">Admin</option>
+                        <option  value="Moderator">Moderator</option>
+                        <option  value="Viewer">Viewer</option>
                     </select>
+                    <!-- <input type="text" class="form-control" name="designation" id="inputEmail4" placeholder="designation"> -->
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Password</label>
