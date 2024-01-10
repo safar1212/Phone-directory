@@ -35,32 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     mysqli_stmt_close($stmt);
 
     // Check if designation is empty
-    // if (empty(trim($_POST["designation"]))) {
-    //     $designation_err = "Select your designation";
-    // } else {
-    //     $sql = "SELECT id FROM users WHERE designation = ?";
-    //     $stmt = mysqli_prepare($conn, $sql);
-    //     if ($stmt) {
-    //         mysqli_stmt_bind_param($stmt, "s", $param_designation);
-
-    //         // Set the value of param username
-    //         $param_designation = trim($_POST['designation']);
-
-    //         // Try to execute this statement
-    //         if (mysqli_stmt_execute($stmt)) {
-    //             mysqli_stmt_store_result($stmt);
-    //             if (mysqli_stmt_num_rows($stmt) == 1) {
-    //                 $designation = trim($_POST['designation']);
-    //             } 
-    //         } else {
-    //             echo "Something went wrong";
-    //         }
-    //     }
-    // }
-
-    // mysqli_stmt_close($stmt);
     if (empty(trim($_POST['designation']))) {
-        $designation_err = "designation cannot be blank";
+         $designation_err = "designation cannot be blank";
     } else {
         $designation = trim($_POST['designation']);
     }
@@ -71,14 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty(trim($_POST['password']))) {
         $password_err = "Password cannot be blank";
     } elseif (strlen(trim($_POST['password'])) < 5) {
-        $password_err = "Password cannot be less than 5 characters";
+      echo  $password_err = "Password cannot be less than 5 characters";
     } else {
         $password = trim($_POST['password']);
     }
 
     // Check for confirm password field
     if (trim($_POST['password']) !=  trim($_POST['confirm_password'])) {
-        $password_err = "Passwords should match";
+       echo $password_err = "Passwords should match";
     }
 
 
@@ -150,11 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Username</label>
-                    <input type="text" class="form-control" name="username" id="inputEmail4" placeholder="username">
+                    <input type="text" class="form-control" require name="username" id="inputEmail4" placeholder="username">
                 </div>
                 <div class="from-group mb-3">
-                    <label for="">Designation</label>
-                    <select name="designation" class="form-control">
+                    <label for="">Designation</label> <?php  if($designation_err) { echo "<h2 style='color: red;' >(designation cannot be blank)</h2>";} ?>
+                    <select name="designation" require class="form-control">
                         <option value="">--Select Designation--</option>
                         <option  value="Super Admin">Super Admin</option>
                         <option  value="Admin">Admin</option>
