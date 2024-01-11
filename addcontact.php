@@ -136,6 +136,11 @@ mysqli_close($conn);
   </div>
 </nav>
 
+<div class="container mt-4">
+    <h3><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can add a contact list</h3>
+    <hr>
+  </div>
+
 <!-- form -->
 
 <div class="container mt-4">
