@@ -76,6 +76,11 @@ function filterTable($query)
     </div>
   </nav>
 
+  <div class="container mt-4">
+    <h3><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can search the contact list</h3>
+    <hr>
+  </div>
+
   <!-- Searchbar -->
 
 

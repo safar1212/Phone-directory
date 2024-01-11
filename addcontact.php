@@ -11,6 +11,26 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 
 require_once "config.php";
 
+
+// section for permission
+
+function isSuperAdmin() {
+  return isset($_SESSION['designation']) && $_SESSION['designation'] === 'Super Admin';
+}
+
+
+function requireAdmin() {
+  if (!isSuperAdmin()) {
+    header("location: accessmessage.php");
+      exit();
+  }
+}
+
+requireAdmin();
+
+
+// add contact section
+
 $nameofperson = $mobilenumber = "";
 $nameofperson_err = $mobilenumber_err =  "";
 
@@ -135,6 +155,11 @@ mysqli_close($conn);
 
   </div>
 </nav>
+
+<div class="container mt-4">
+    <h3><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can add a contact list</h3>
+    <hr>
+  </div>
 
 <!-- form -->
 

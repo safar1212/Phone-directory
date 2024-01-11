@@ -10,6 +10,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 require_once "config.php";
 
 
+// section for permission
+
+function isSuperAdmin() {
+     return isset($_SESSION['designation']) && $_SESSION['designation'] === 'Super Admin';
+   }
+   
+   
+   function requireAdmin() {
+     if (!isSuperAdmin()) {
+       header("location: accessmessage.php");
+         exit();
+     }
+   }
+   
+   requireAdmin();
+
+
 if (isset($_GET['id'])) {  
    echo $id = $_GET['id'];  
     $query = "DELETE FROM `numbers` WHERE `id` = $id";  

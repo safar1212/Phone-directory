@@ -24,10 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
   if (empty($err)) {
-    $sql = "SELECT id, username, designation, password FROM users WHERE username = ?";
+    $sql = "SELECT id, username, designation, password FROM users WHERE username = ? AND designation =?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $param_username);
+    mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_designation);
     $param_username = $username;
+    $param_designation = $designation;
+    
+   
 
 
     // Try to execute this statement
