@@ -12,7 +12,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Access Denied Page</a>
+        <a class="navbar-brand" href="#">Access Denied</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
         </div>
     </nav>
 
-    <H2 style="color: red;">Sorry, you don't have access to this page!</H2>
+    <h4 style="color: red; margin: 150px;">Sorry, you don't have access to this page or perform this action!</h4>
 
 </body>
 

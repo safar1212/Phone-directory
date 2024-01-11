@@ -18,10 +18,6 @@ function isSuperAdmin() {
   return isset($_SESSION['designation']) && $_SESSION['designation'] === 'Super Admin';
 }
 
-// if(!isset($_SESSION['designation']) && $_SESSION['designation'] !== 'Super Admin'){
-//   header("location: accessmessage.php");
-// }
-
 
 function requireAdmin() {
   if (!isSuperAdmin()) {
