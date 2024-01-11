@@ -15,7 +15,7 @@ $err = "";
 // if request method is post
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty(trim($_POST['username'])) || empty(trim($_POST['designation'])) || empty(trim($_POST['password']))) {
-    $err = "Please enter username + password + designation";
+    echo $err = "Please enter username + password + designation";
   } else {
     $username = trim($_POST['username']);
     $designation = trim($_POST['designation']);
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // this means the password is corrct. Allow user to login
             session_start();
             $_SESSION["username"] = $username;
-            $_SESSION["designation"];
+            $_SESSION["designation"] = $designation;
             $_SESSION["id"] = $id;
             $_SESSION["loggedin"] = true;
 
