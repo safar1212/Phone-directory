@@ -10,7 +10,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Phone Directory] <a name="Phone Directory"></a>
+# 📖 
 
 > Introducing our sophisticated Phone Directory App, meticulously crafted with PHP to streamline your contact management experience. This powerful application empowers users with the ability to seamlessly add, modify, and delete phone numbers, offering a comprehensive solution for organizing and maintaining your contacts effortlessly. With a user-friendly interface and robust functionality, our PHP-based Phone Directory App ensures efficient and secure management of your contact information, providing a seamless and professional solution to meet your communication needs. Experience the convenience of centralized contact management like never before, tailored to enhance your efficiency and connectivity.
 
@@ -191,7 +191,7 @@ Feel free to check the [issues page](../../issues/).
 
 If you like this project...
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -201,7 +201,7 @@ If you like this project...
 
 I would like to thank...
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
 
 <!-- FAQ (optional) -->
 
@@ -217,7 +217,7 @@ I would like to thank...
 
   - [Answer_2]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
 
 <!-- LICENSE -->
 
