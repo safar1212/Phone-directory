@@ -14,7 +14,7 @@
 
 > Introducing our sophisticated Phone Directory App, meticulously crafted with PHP to streamline your contact management experience. This powerful application empowers users with the ability to seamlessly add, modify, and delete phone numbers, offering a comprehensive solution for organizing and maintaining your contacts effortlessly. With a user-friendly interface and robust functionality, our PHP-based Phone Directory App ensures efficient and secure management of your contact information, providing a seamless and professional solution to meet your communication needs. Experience the convenience of centralized contact management like never before, tailored to enhance your efficiency and connectivity.
 
-**[your_project__name]** is a...
+
 
 ## 🛠 Built With <a name="PHP"></a>
 
@@ -227,4 +227,4 @@ This project is [MIT](./LICENSE) licensed.
 
 _NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
