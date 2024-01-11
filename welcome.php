@@ -68,12 +68,12 @@ $num = mysqli_num_rows($result);
   </nav>
 
   <div class="container mt-4">
-    <h3><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can find the contact list</h3>
+    <h3 style="margin-left: 140px;"><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can find the contact list</h3>
     <hr>
   </div>
 
 
-  <h3 style="margin-left: 30px;"><?php echo $num ?> records found in Database</h3>
+  <h3 style="margin-left: 600px;"><?php echo $num ?> records found in Database</h3>
   <hr>
 
   
