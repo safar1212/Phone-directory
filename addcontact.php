@@ -21,7 +21,7 @@ function isSuperAdmin() {
 
 function requireAdmin() {
   if (!isSuperAdmin()) {
-    header("location: accessmessage.php");
+    header("location: accessdenied.php");
       exit();
   }
 }

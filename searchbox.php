@@ -77,7 +77,7 @@ function filterTable($query)
   </nav>
 
   <div class="container mt-4">
-    <h3><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can search the contact list</h3>
+    <h3 style="margin-left: 140px;"><?php echo "Welcome " . $_SESSION['designation'] ?>! Below you can search the contact list</h3>
     <hr>
   </div>
 
