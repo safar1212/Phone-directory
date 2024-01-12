@@ -13,6 +13,14 @@
 # 📖 
 
 > Introducing our sophisticated Phone Directory App, meticulously crafted with PHP to streamline your contact management experience. This powerful application empowers users with the ability to seamlessly add, modify, and delete phone numbers, offering a comprehensive solution for organizing and maintaining your contacts effortlessly. With a user-friendly interface and robust functionality, our PHP-based Phone Directory App ensures efficient and secure management of your contact information, providing a seamless and professional solution to meet your communication needs. Experience the convenience of centralized contact management like never before, tailored to enhance your efficiency and connectivity.
+>
+> ![Capture1](https://github.com/safar1212/Phone-directory/assets/78845635/6f047370-0cf8-4375-ba9f-6015474e5bdb)
+![Capture2](https://github.com/safar1212/Phone-directory/assets/78845635/a29dc6f9-4c65-48f8-a33d-125ce3b82b2f)
+![Capture3](https://github.com/safar1212/Phone-directory/assets/78845635/4e769544-fea8-48da-87e7-18f12e9e49e3)
+![Capture4](https://github.com/safar1212/Phone-directory/assets/78845635/2cd3b9a7-7fe0-4c3f-b191-5e4f44f5e0ad)
+![Capture5](https://github.com/safar1212/Phone-directory/assets/78845635/d567fa8a-7903-4192-ad17-781724b98867)
+![Capture6](https://github.com/safar1212/Phone-directory/assets/78845635/3ef5a0d5-c52d-4047-8987-3f7b9a8361b7)
+
 
 
 
