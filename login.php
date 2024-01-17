@@ -1,8 +1,8 @@
 <?php
-//This script will handle login
+
 session_start();
 
-// check if the user is already logged in
+
 if (isset($_SESSION['username'])) {
   header("location: welcome.php");
   exit;
@@ -12,7 +12,7 @@ require_once "config.php";
 $username = $designation = $password = "";
 $err = "";
 
-// if request method is post
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty(trim($_POST['username'])) || empty(trim($_POST['designation'])) || empty(trim($_POST['password']))) {
     echo $err = "Please enter username + password + designation";
@@ -33,21 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
    
 
 
-    // Try to execute this statement
+    
     if (mysqli_stmt_execute($stmt)) {
       mysqli_stmt_store_result($stmt);
       if (mysqli_stmt_num_rows($stmt) == 1) {
         mysqli_stmt_bind_result($stmt, $id, $username,$designation , $hashed_password);
         if (mysqli_stmt_fetch($stmt)) {
           if (password_verify($password, $hashed_password)) {
-            // this means the password is corrct. Allow user to login
+            
             session_start();
             $_SESSION["username"] = $username;
             $_SESSION["designation"] = $designation;
             $_SESSION["id"] = $id;
             $_SESSION["loggedin"] = true;
 
-            //Redirect user to welcome page
+            
             header("location: welcome.php");
           }
         }
