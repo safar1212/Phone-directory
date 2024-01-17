@@ -8,13 +8,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 require_once "config.php";
 
-// Search database
+
 
 if(isset($_POST['search']))
 {
     $valueToSearch = $_POST['valuetosearch'];
-    // search in all table columns
-    // using concat mysql function
+   
+    
     $query = "SELECT * FROM `numbers` WHERE CONCAT(`id`, `nameofperson`, `mobilenumber`) LIKE '%".$valueToSearch."%'";
     $search_result = filterTable($query);
     
@@ -24,7 +24,7 @@ if(isset($_POST['search']))
     $search_result = filterTable($query);
 }
 
-// function to connect and execute the query
+
 function filterTable($query)
 {
     $connect = mysqli_connect("localhost", "root", "", "login");
