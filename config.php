@@ -1,6 +1,6 @@
 <?php
 
-// details of the my sql server
+
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');

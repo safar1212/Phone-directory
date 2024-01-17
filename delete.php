@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 require_once "config.php";
 
 
-// section for permission
+
 
 function isSuperAdmin() {
      return isset($_SESSION['designation']) && $_SESSION['designation'] === 'Super Admin';

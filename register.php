@@ -6,7 +6,7 @@ $username_err = $designation_err = $password_err = $confirm_password_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // Check if username is empty
+  
     if (empty(trim($_POST["username"]))) {
         $username_err = "Username cannot be blank";
     } else {
@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-            // Set the value of param username
+            
             $param_username = trim($_POST['username']);
 
-            // Try to execute this statement
+          
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 1) {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     mysqli_stmt_close($stmt);
 
-    // Check if designation is empty
+   
     if (empty(trim($_POST['designation']))) {
          $designation_err = "designation cannot be blank";
     } else {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
 
 
-    // Check for password
+ 
     if (empty(trim($_POST['password']))) {
         $password_err = "Password cannot be blank";
     } elseif (strlen(trim($_POST['password'])) < 5) {
@@ -52,25 +52,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $password = trim($_POST['password']);
     }
 
-    // Check for confirm password field
+   
     if (trim($_POST['password']) !=  trim($_POST['confirm_password'])) {
        echo $password_err = "Passwords should match";
     }
 
 
-    // If there were no errors, go ahead and insert into the database
+    
     if (empty($username_err) && empty($designation_err) && empty($password_err) && empty($confirm_password_err)) {
         $sql = "INSERT INTO users (username, designation, password) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_designation, $param_password);
 
-            // Set these parameters
+            
             $param_username = $username;
             $param_designation = $designation;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Try to execute the query
+           
             if (mysqli_stmt_execute($stmt)) {
                 header("location: login.php");
             } else {

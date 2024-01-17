@@ -12,7 +12,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 require_once "config.php";
 
 
-// section for permission
+
 
 function isSuperAdmin() {
   return isset($_SESSION['designation']) && $_SESSION['designation'] === 'Super Admin';
@@ -29,14 +29,14 @@ function requireAdmin() {
 requireAdmin();
 
 
-// add contact section
+
 
 $nameofperson = $mobilenumber = "";
 $nameofperson_err = $mobilenumber_err =  "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    // Check if name is empty
+    
     if(empty(trim($_POST["nameofperson"]))){
         $nameofperson_err = "Name cannot be blank";
     }
@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         {
             mysqli_stmt_bind_param($stmt, "s", $param_nameofperson);
 
-            // Set the value of param name
+         
             $param_nameofperson = trim($_POST['nameofperson']);
 
-            // Try to execute this statement
+            
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1)
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     mysqli_stmt_close($stmt);
 
 
-// Check for password
+
 if(empty(trim($_POST['mobilenumber']))){
     $mobilenumber_err = "mobile number cannot be blank";
 }
@@ -79,7 +79,7 @@ else{
 }
 
 
-// If there were no errors, go ahead and insert into the database
+
 if(empty($nameofperson_err) && empty($mobienumber_err))
 {
     $sql = "INSERT INTO numbers (nameofperson, mobilenumber) VALUES (?, ?)";
@@ -88,14 +88,14 @@ if(empty($nameofperson_err) && empty($mobienumber_err))
     {
         mysqli_stmt_bind_param($stmt, "ss", $param_nameofperson, $param_mobilenumber);
 
-        // Set these parameters
+      
         $param_nameofperson = $nameofperson;
         $param_mobilenumber = $mobilenumber;
 
-        // Try to execute the query
+      
         if (mysqli_stmt_execute($stmt))
         {
-            // header("location: welcome.php");
+            
             echo "Contact details added successfully";
             
 
